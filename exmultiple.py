@@ -1,17 +1,14 @@
-def resto(n, a):
-    return n - a * (n / a)
-
 n = 0
 i= []
 c = n 
 while n < 999:
     n = n + 1
     
-    if resto(n, 3) == 0:
+    if n % 3 == 0:
        #print "n:", (n)
        c += n
        #print "Tot_M_3:", c
-    elif resto(n, 5) == 0:
+    elif n % 5 == 0:
        #print "n:", (n)
        c += n 
        #print "Tot_M_5:", c
