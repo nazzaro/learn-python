@@ -4,7 +4,6 @@ script, filename = argv
 
 txt = open(filename)
 
-print "Here's your file %r:" % filename
 print txt.read()
 
 def tastiera():
@@ -26,4 +25,6 @@ def tastiera():
         n = 0 + 1
              
     print click, n
+
+print tastiera
 
