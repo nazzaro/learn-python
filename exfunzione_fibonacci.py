@@ -1,14 +1,17 @@
-def fibonacci(a):
-    for a in range(0, a):
-        if a == 0:
-            return 0
-        elif a == 1:
-            return 1
+def fibonacci(n):
+    b = []
+    
+    for i in range(n+1):
+        if i == 0:
+            b.append(0)
+        elif i == 1:
+            b.append(1)
         else:
-            return fibonacci(a- 1) + fibonacci(a -2)
+            b.append(b[i - 1] + b[i - 2])
+            # fibonacci(n - 1) + fibonacci(n - 2)
+            
+    return b
 
-b = 0
-a = int(raw_input(">>> "))
-b = line.strip(fibonacci(a))
-print b
 
+a = int(raw_input(">>> "))   
+print fibonacci(a)
