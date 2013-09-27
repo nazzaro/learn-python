@@ -1,4 +1,4 @@
-lettere = "abcdefghijklmnopqrstuwxyz"
+lettere = "abcdefghijklmnopqrstuvwxyz"
 n = 0
   
 for click in lettere:
