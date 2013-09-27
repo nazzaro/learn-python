@@ -1,9 +1,19 @@
+import logging
+
+logger = logging.getLogger("snake")
+handler = logging.StreamHandler()
+handler.setFormatter(logging.Formatter("%(levelname)s - %(message)s"))
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
+
 highscore = 50
 
+logger.debug("init pygame")
 import pygame, random, sys
 pygame.init()
 
 def salva(p):
+    logger.debug("call function salva")
     f = open(sys.argv[0], "r")
     x = f.readline()
     x = f.readlines()
@@ -15,15 +25,15 @@ def salva(p):
 
 
 def record():
-    f = open(sys.argv[0], "r")
-    x = int(f.readline())
-    f.close()
+    logger.debug("call function record")
+    x = highscore
     return x
 
 
 def gameover(x):
     global m, snake
     
+    logger.debug("call function gameover")
     if m == False:
         global size, w, h, verdanabig, fontino
         s = verdanabig.render(str(len(snake.s)-3), True, (0,0,0))
@@ -56,17 +66,20 @@ def gameover(x):
 
 
 def head(): # surface of black for the head
+    logger.debug("call function head")
     s = pygame.Surface((10, 11))
     s.fill((0, 0, 0))
     return s
 
 
 def body(): # surface of gray for the body
+    logger.debug("call function body")
     s = pygame.Surface((10, 10))
     s.fill((96, 96, 96))
     return s
 
 def Fruit(): # surface of red for the fruit
+    logger.debug("call function Fruit")
     s = pygame.Surface((5, 5))
     s.fill((155, 0,0))
     r = pygame.Rect(random.randrange(0, 11) * 19, random.randrange(0,10)* 19, 19, 19)
@@ -74,6 +87,7 @@ def Fruit(): # surface of red for the fruit
 
 class Snake: # class our snake
     def __init__(self, w =3):
+        logger.debug("init object for class Snake")
         self.dir = 1, 0
         self.s = []
         
@@ -127,11 +141,13 @@ class Snake: # class our snake
             sc.blit(body(), (i[0] * 20, i[0] * 20, 20, 20))
 
 
+logger.debug("before configure game")
 size = w, h = 600, 440
 window = pygame.display.set_mode(size) # I create the window
 pygame.display.set_caption("Snake")
 snake = Snake()
 fruit = Fruit()
+
 
 try:
     verdanabig=pygame.font.SysFont("verdana.ttf",50)
@@ -147,7 +163,10 @@ except:
         fontino=pygame.font.Font(pygame.font.get_default_font(),25)
         mini=pygame.font.Font(pygame.font.get_default_font(),20)
 
+logger.debug("after configure game")
+
 def game():
+    logger.debug("call function game")
     global snake,fruit,m
     pause = False	# true se il gioco e' in pausa
     while 1:		# ciclo del gioco
